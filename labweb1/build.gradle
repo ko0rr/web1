@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application{
+    mainClass = 'org.example.backend.Main'
+}
+
+dependencies {
+    implementation(files("lib/fastcgi-lib.jar"))
+    implementation "com.fasterxml.jackson.core:jackson-databind:latest.release"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:latest.release"
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.example.backend.Main',
+                'Implementation-Title': 'LabWeb1',
+                'Implementation-Version': version
+        )
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+
+test {
+    useJUnitPlatform()
+}

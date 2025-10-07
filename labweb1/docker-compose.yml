@@ -1,0 +1,26 @@
+services:
+  java-fcgi:
+    build:
+      context: .
+      dockerfile: src/main/java/org/example/backend/Dockerfile
+    networks:
+      - web
+    expose:
+      - "9000"
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: ./src/main/java/org/example/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "9001:80"
+    depends_on:
+      - java-fcgi
+    networks:
+      - web
+    restart: unless-stopped
+
+networks:
+  web:
+

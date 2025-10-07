@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб лаб1</title>
+    <link rel="icon" sizes="48x48" type="image/png" href="/frontend/images/leaves.png"/>
+    <link href="styles/style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<div class="header">
+    <h1>Корепина Ксения 466273 P3208</h1>
+</div>
+
+<div class="container">
+    <div class="form-section">
+        <form id="pointForm">
+            <div class="form-group">
+                <span class="form-label">Координата X:</span>
+                <div class="radio-group" role="group" aria-labelledby="x-coordinate-label">
+                    <label>
+                        <input type="radio" name="x" value="-2" required> -2
+                    </label>
+                    <label>
+                        <input type="radio" name="x" value="-1.5"> -1.5
+                    </label>
+                    <label>
+                        <input type="radio" name="x" value="-1"> -1
+                    </label>
+                    <label>
+                        <input type="radio" name="x" value="-0.5"> -0.5
+                    </label>
+                    <label>
+                        <input type="radio" name="x" value="0"> 0
+                    </label>
+                    <label>
+                        <input type="radio" name="x" value="0.5"> 0.5
+                    </label>
+                    <label>
+                        <input type="radio" name="x" value="1"> 1
+                    </label>
+                    <label>
+                        <input type="radio" name="x" value="1.5"> 1.5
+                    </label>
+                    <label>
+                        <input type="radio" name="x" value="2"> 2
+                    </label>
+                </div>
+                <div class="error" id="xError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="y">Координата Y:</label>
+                <input type="text" id="y" name="y" placeholder="Введите число от -3 до 3" required maxlength="5">
+                <div class="error" id="yError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="r">Радиус R:</label>
+                <input type="text" id="r" name="r" placeholder="Введите число от 2 до 5" required maxlength="5">
+                <div class="error" id="rError"></div>
+            </div>
+
+            <button type="button" onclick="sendToServer()" id="submitBtn">Проверить</button>
+        </form>
+    </div>
+
+    <div class="graph-section">
+        <img src="images/areas.png" alt="График областей попадания" width="200" height="200">
+    </div>
+
+    <div class="results">
+        <h2>Результаты проверки</h2>
+        <div class="loading" id="loading" style="display: none;">Загрузка...</div>
+        <table id="results-section">
+            <thead>
+            <tr class="table-header">
+                <th scope="col">X</th>
+                <th scope="col">Y</th>
+                <th scope="col">R</th>
+                <th scope="col">Попадание</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Время работы программы</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
